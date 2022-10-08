@@ -66,10 +66,12 @@ void dealloc(Node* head)
 //   Add any helper functions or
 //   function object struct declarations
 // -----------------------------------------------
-
-
-
-
+bool pred(int a) {
+	if ( a %2 == 0) {
+		return true;
+	}
+	else return false;
+}
 
 int main(int argc, char* argv[])
 {
@@ -86,10 +88,19 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+		Node* smaller;
+		Node* larger;
+		Node* list;
+		llpivot(head,smaller,larger,10);
+		cout << "done" << endl;
+		print(head);
+		print(smaller);
+		print(larger);
+		list = llfilter(smaller,pred);
+		print(list);
 
-
+        
 
     
     return 0;
-
 }
