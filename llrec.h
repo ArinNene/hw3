@@ -1,6 +1,7 @@
 #ifndef LLREC_H
 #define LLREC_H
 #include <cstdlib>
+#include <iostream>
 
 /**
  * Node struct for both problems
@@ -45,6 +46,9 @@ struct Node
  *   Pivot value
  *
  */
+
+Node* llpivotHelper(Node *&head,int pivot);
+
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
 
 /**
@@ -77,12 +81,22 @@ Node* llfilter(Node* head, Comp pred);
 
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
-{
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
-
-
+{ 
+    if (head == nullptr) { //if list is empty, return empty list
+        return nullptr;
+    }
+    if (head) { //while head can be accessed
+        if (pred(head->val)) { //check pred(). if true, keep in list and make recursive call.
+            Node* temp = head;
+            head = llfilter(head->next,pred);
+            delete temp;
+            temp = nullptr;
+        } 
+        else { //otherwise, set pointers to remove from list. Make recursive call.
+            head->next = llfilter(head->next,pred);
+        }
+    }
+    return head;
 }
 
 #endif

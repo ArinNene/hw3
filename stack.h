@@ -9,7 +9,7 @@ template <typename T>
 class Stack : private std::vector<T>
 {
 public:
-    Stack() : std::vector<T>::vector() { };;
+    Stack() : std::vector<T>::vector() { };
     ~Stack();
     bool empty() const;
     size_t size() const;
@@ -20,23 +20,25 @@ public:
 
 };
 
+template <typename T>
+Stack<T>::~Stack() { }
 
 template <typename T>
-bool Stack<T>::empty() const {
+bool Stack<T>::empty() const { //check if vector size is 0
 	if (std::vector<T>::size() == 0) return true;
 	else return false;
 }
 template <typename T>
-size_t Stack<T>::size() const {
+size_t Stack<T>::size() const { //vector::size value 
 	return std::vector<T>::size();
 }
 template <typename T>
-void Stack<T>::push(const T& item) {
+void Stack<T>::push(const T& item) { //vector::push_back. FILO
 	std::vector<T>::push_back(item);
 }
 
 template <typename T>
-void Stack<T>::pop() {
+void Stack<T>::pop() { //vector::pop_back. FILO
 	if (empty()) {
 		throw std::underflow_error("Attempting to pop from empty list.");
 	}
@@ -46,7 +48,7 @@ void Stack<T>::pop() {
 }
 
 template <typename T>
-const T& Stack<T>::top() const {
+const T& Stack<T>::top() const { //top of stack is the same as the back of the vector. FILO
 	if (empty()) {
 		throw std::underflow_error("Attempting to check top of empty list.");
 	}

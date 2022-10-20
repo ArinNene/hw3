@@ -66,7 +66,7 @@ void dealloc(Node* head)
 //   Add any helper functions or
 //   function object struct declarations
 // -----------------------------------------------
-bool pred(int a) {
+bool pred(int a) { //checks if a value is even
 	if ( a %2 == 0) {
 		return true;
 	}
@@ -92,15 +92,24 @@ int main(int argc, char* argv[])
 		Node* larger;
 		Node* list;
 		llpivot(head,smaller,larger,10);
-		cout << "done" << endl;
-		print(head);
-		print(smaller);
-		print(larger);
-		list = llfilter(smaller,pred);
-		print(list);
+		print(head);//should be empty
+		print(smaller);  //should be all values less than 10
+		print(larger); //should be all values greater than/equal to 10
+		list = llfilter(smaller,pred); //Should keep all odd numbers.
+		print(list); //should be only odd numbers from smaller.
 
-        
-
+        //following lines free memory to fix valgrind
+        while (list != nullptr) { 
+            Node* temp = list;
+            list = list->next;
+            delete temp;
+        }
+        while (larger != nullptr) { 
+            Node* temp = larger;
+            larger = larger->next;
+            delete temp;
+        }
+    
     
     return 0;
 }

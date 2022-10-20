@@ -32,7 +32,7 @@ valgrindSTACK:
 	$(VALGRIND) ./stack_test
 
 clean:
-	rm -f *.o rh llrec-test *~
+	rm -f *.o rh llrec-test stack_test *~
 
 
 .PHONY: clean 
